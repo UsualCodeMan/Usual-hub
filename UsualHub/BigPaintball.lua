@@ -10,7 +10,7 @@ _G.Teamcheck = false
 
 spawn(function()
     local library = require(game:GetService("ReplicatedStorage").Framework.Library)
-    local env = getgenv(game:GetService("Players").LocalPlayer.PlayerScripts.Scripts.Game["First Person Controller"])
+    local env = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.Scripts.Game["First Person Controller"])
     
     print("loaded");
     local old_fire = library.Network.Fire
