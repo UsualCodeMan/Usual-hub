@@ -1,11 +1,13 @@
 local Players = game:GetService("Players")
-local lplr = game.Players.LocalPlayer
-local camera = game:GetService("Workspace").CurrentCamera
-local CurrentCamera = workspace.CurrentCamera
-local worldToViewportPoint = CurrentCamera.worldToViewportPoint
+local plyr = game.Players.LocalPlayer
+local Camera = game:GetService("Workspace").CurrentCamera
+local worldToViewportPoint = Camera.worldToViewportPoint
 
 _G.unlock_all = false
 _G.Besp = false
+_G.Tracers = false
+_G.TracerPositon = false
+_G.Sesp = false
 _G.Teamcheck = false
 
 spawn(function()
@@ -62,13 +64,13 @@ spawn(function()
         function boxesp()
             game:GetService("RunService").RenderStepped:Connect(function()
                 if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
-                    local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                    local Vector, onScreen = Camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
     
                     local RootPart = v.Character.HumanoidRootPart
                     local Head = v.Character.Head
-                    local RootPosition, RootVis = worldToViewportPoint(CurrentCamera, RootPart.Position)
-                    local HeadPosition = worldToViewportPoint(CurrentCamera, Head.Position + HeadOff)
-                    local LegPosition = worldToViewportPoint(CurrentCamera, RootPart.Position - LegOff)
+                    local RootPosition, RootVis = worldToViewportPoint(Camera, RootPart.Position)
+                    local HeadPosition = worldToViewportPoint(Camera, Head.Position + HeadOff)
+                    local LegPosition = worldToViewportPoint(Camera, RootPart.Position - LegOff)
     
                     if onScreen then
                         BoxOutline.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
@@ -79,7 +81,7 @@ spawn(function()
                         Box.Position = Vector2.new(RootPosition.X - Box.Size.X / 2, RootPosition.Y - Box.Size.Y / 2)
                         Box.Visible = true
     
-                        if v.TeamColor == lplr.TeamColor and _G.Teamcheck then
+                        if v.TeamColor == plyr.TeamColor and _G.Teamcheck then
                             BoxOutline.Visible = false
                             Box.Visible = false
                         else
@@ -118,13 +120,13 @@ spawn(function()
         function boxesp()
             game:GetService("RunService").RenderStepped:Connect(function()
                 if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
-                    local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                    local Vector, onScreen = Camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
     
                     local RootPart = v.Character.HumanoidRootPart
                     local Head = v.Character.Head
-                    local RootPosition, RootVis = worldToViewportPoint(CurrentCamera, RootPart.Position)
-                    local HeadPosition = worldToViewportPoint(CurrentCamera, Head.Position + HeadOff)
-                    local LegPosition = worldToViewportPoint(CurrentCamera, RootPart.Position - LegOff)
+                    local RootPosition, RootVis = worldToViewportPoint(Camera, RootPart.Position)
+                    local HeadPosition = worldToViewportPoint(Camera, Head.Position + HeadOff)
+                    local LegPosition = worldToViewportPoint(Camera, RootPart.Position - LegOff)
     
                     if onScreen then
                         BoxOutline.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
@@ -135,7 +137,7 @@ spawn(function()
                         Box.Position = Vector2.new(RootPosition.X - Box.Size.X / 2, RootPosition.Y - Box.Size.Y / 2)
                         Box.Visible = true
     
-                        if v.TeamColor == lplr.TeamColor and _G.Teamcheck then
+                        if v.TeamColor == plyr.TeamColor and _G.Teamcheck then
                             BoxOutline.Visible = false
                             Box.Visible = false
                         else
@@ -157,6 +159,82 @@ spawn(function()
     end)
 end)
 
+spawn(function()
+    for i,v in pairs(game.Players:GetChildren()) do
+        local Line = Drawing.new("Line")
+        Line.Visible = false
+        Line.Color = Color3.new(1,1,1)
+        Line.Thickness = 1
+        Line.Transparency = 1
+
+        function Tracers()
+            game:GetService("RunService").RenderStepped:Connect(function()
+                if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v ~= plyr then
+                    local vector, onScreen = Camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                    if onScreen then
+                        if _G.TracerPositon then
+                            Line.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 1)
+                            Line.To = Vector2.new(vector.X, vector.Y)
+                        else
+                            Line.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+                            Line.To = Vector2.new(vector.X, vector.Y)
+                        end
+                        
+                        if v.TeamColor == plyr.TeamColor and _G.Teamcheck then
+                            Line.Visible = false
+                        else
+                            Line.Visible = _G.Tracers
+                        end
+                    else
+                        Line.Visible = false
+                    end
+                else
+                    Line.Visible = false
+                end
+            end)
+        end
+        coroutine.wrap(Tracers)()
+    end
+
+    game.Players.PlayerAdded:Connect(function(v)
+        local Line = Drawing.new("Line")
+        Line.Visible = false
+        Line.Color = Color3.new(1,1,1)
+        Line.Thickness = 1
+        Line.Transparency = 1
+
+        function Tracers()
+            game:GetService("RunService").RenderStepped:Connect(function()
+                if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v ~= plyr then
+                    local vector, onScreen = Camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                    if onScreen then
+                        if _G.TracerPositon then
+                            Line.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 1)
+                            Line.To = Vector2.new(vector.X, vector.Y)
+                        else
+                            Line.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+                            Line.To = Vector2.new(vector.X, vector.Y)
+                        end
+                        
+                        if v.TeamColor == plyr.TeamColor and _G.Teamcheck then
+                            Line.Visible = false
+                        else
+                            Line.Visible = _G.Tracers
+                        end
+                    else
+                        Line.Visible = false
+                    end
+                else
+                    Line.Visible = false
+                end
+            end)
+        end
+        coroutine.wrap(Tracers)()
+    end)
+end)
+
 local guiName = "UsualHub"
 local UILibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/twink"))()
 local MainUI = UILibrary.Load(guiName)
@@ -175,10 +253,16 @@ end)
 
 -- Aimbot
 Aimbot.AddLabel("WIP")
-Aimbot.AddToggle("Box Esp", "Besp", function(Toggled)
+Aimbot.AddToggle("Box Esp", false, function(Toggled)
     _G.Besp = Toggled
 end)
-Aimbot.AddToggle("Team Check", "team", function(Toggled)
+Aimbot.AddToggle("Tracers ", false, function(Toggled)
+    _G.Tracers = Toggled
+end)
+Aimbot.AddToggle("Tracer Positions", false, function(Toggled)
+    _G.TracerPositon = Toggled
+end)
+Aimbot.AddToggle("Team Check", false, function(Toggled)
     _G.Teamcheck = Toggled
 end)
 
@@ -191,7 +275,7 @@ Misc.AddButton("Destroy spawn barriers", function()
     workspace.__MAP.SpawnShields.Blue:Destroy()
     print("Destroyed");
 end)
-Misc.AddToggle("Double Credits Toggle", "W", function(Toggled) 
+Misc.AddToggle("Double Credits Toggle", false, function(Toggled) 
     workspace.__VARIABLES.DoubleCredits.Value = Toggled;
 end)
 -- Misc.AddSlider("Walkspeed slider", "WalkSpeed", 16, 100, false, function(ws)
