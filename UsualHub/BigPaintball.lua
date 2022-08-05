@@ -275,6 +275,9 @@ Misc.AddButton("Destroy spawn barriers", function()
     workspace.__MAP.SpawnShields.Blue:Destroy()
     print("Destroyed");
 end)
+Misc.AddSlider("Hip Height", {Min = 2, Max = 100, Def = 2}, function(Value)
+    plyr.Character.Humanoid.HipHeight = Value
+end)
 Misc.AddToggle("Double Credits Toggle", false, function(Toggled) 
     workspace.__VARIABLES.DoubleCredits.Value = Toggled;
 end)
