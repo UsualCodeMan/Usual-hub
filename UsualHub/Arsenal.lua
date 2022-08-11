@@ -49,19 +49,19 @@ end
 
 spawn(function()
     for i, v in pairs(game:GetService("ReplicatedStorage").ItemData.Images.Announcers:GetChildren()) do
-        table.insert(_G.AnnouncersTable, v.Name)
+        table.insert(AnnouncersTable, v.Name)
     end
 end)
 
 spawn(function()
     for i, v in pairs(game:GetService("ReplicatedStorage").ItemData.Images.Melees:GetChildren()) do
-        table.insert(_G.MeleeTable, v.Name)
+        table.insert(MeleeTable, v.Name)
     end
 end)
 
 spawn(function()
     for i, v in pairs(game:GetService("ReplicatedStorage").ItemData.Images.WeaponSkins:GetChildren()) do
-        table.insert(_G.WeaponSkinTable, v.Name)
+        table.insert(WeaponSkinTable, v.Name)
     end
 end)
 
