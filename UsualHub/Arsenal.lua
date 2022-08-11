@@ -5,9 +5,9 @@ local worldToViewportPoint = Camera.worldToViewportPoint
 local Melee = plyr.Data.Shuffles.Melees
 local Announcers = plyr.Data.Shuffles.Announcers
 local FileName = "Arsenal_Favorites.txt"
-local AnnouncersTable = {"Default", "Warcrimes", "YouTuber", "Homeless", "American", "British", "Russian", "Movie Man", "Koneko", "John", "Flamingo", "Eprika", "Petrify", "Bandites", "Santa", "Murderous Child", "Weesnaw", "Hackula", "Jolly Narrator", "Carnival Carnie", "xonae"}
-local WeaponSkinTable = {"Fog", "Triangles", "Loops", "Widow", "Bubbles", "Cyber", "Cell", "Alien", "LGBTQIA+", "Polkas", "Diamonds", "Duckies", "Cube", "Target", "Spirals", "Splots", "Binary", "Froggo", "Crystaline", "Water", "Run", "Dark Matter", "Suit", "Glitter", "Clouds", "Checker", "Squad", "Flow", "Swirls", "Crow", "Galaxy", "Brick", "TRANS PRIDE", "Circuits", "Grid", "Bones", "Candied", "Candies", "Candles", "Cartoony Ghost", "Hallowed Crystals", "Police Tape", "Pumpkins", "Skulls", "Webs", "Arctic Camo", "Gift Wrapped", "Coal", "Stars", "Aurora", "Candy Cross", "Bells", "Static", "Wood", "Holly", "Canes and Cookies", "Snow Scattered", "Ugly Sweater", "Creator", "Bronze", "Silver", "Gold", "Weapon Skins", "Flesh", "Chainage", "Fleshy", "Bruh", "Time Is Money", "Blind Justice", "Nomad", "Clovers", "Quandale Dingle"}
-local MeleeTable = {"Swordfish", "Classic Sword", "Silver Bell", "Fisticuffs", "Bat", "Machete", "Racket", "Pan", "Ban Hammer", "Kukri", "Rubber Hammer", "Harvester", "Brass Knuckles", "Pitchfork", "Claws", "Chainsaw", "Scythe", "Energy Blade", "Butterfly Knife", "Candy Cane", "Dagger", "Gaster Blaster", "Icicle", "Karambit", "Kitchen Knife", "Kunai", "Pencil", "Sickle", "Space Katana", "Tomahawk", "Toy Tree", "Coal Sword", "Mop", "Bouquet", "Bloxy", "Sledgehammer", "Shovel", "Tactical Knife", "Combat Knife", "Saber", "ACT Trophy", "Paddle", "Wrench", "Newspaper", "Katana", "Calculator", "Baton", "Literal Melee", "Rokia Hammer", "Katar", "Crucible", "Space KatanaOLD", "Endbringer", "Energy Katar", "SuperSpaceKatana", "Moderation Hammer", "Frog", "Delinquent Pop", "Handy Candy", "Candleabra", "Electronic Stake", "Fire Poker", "Pumpkin Staff", "Pumpkin Bucket", "Garlic Kebab", "Balloon Sword", "Candy Cane Sword", "Coal Scythe", "Candy Cane Claws", "Glacier Blade", "Peppermint Hammer", "Mittens", "Wooden Spoon", "Banana", "The Darkheart", "Da Melee", "Big Sip", "FOAM BLADE 3000", "Blade", "Bat Axe", "Sabre", "Sabre", "Rapier", "Fish", "Khopesh", "Golden Rings", "The Illumina", "The Venomshank", "The Firebrand", "The Ghostwalker", "The Windforce", "The Ice Dagger", "Slicecicle", "Swift End", "Divinity", "Night's Edge", "When Day Breaks", "Moai", "Heart Break", "Nomad's Blade", "Reclaimer", "Annihilator's Broken Sword", "Killbrick Melee", "Crowbar", "Rebel's Bat", "Wired Bat", "Roughian's Pipe", "Rusty Pipe", "Leader's Axe", "Makeshift Axe", "Stranger's Handblades", "Handblades"}
+local AnnouncersTable = {}
+local WeaponSkinTable = {}
+local MeleeTable = {}
 
 _G.Besp = false
 _G.Tracers = false
@@ -46,6 +46,24 @@ function LoadFavorites()
         String.Name = _G.FavoritesTable.CurrentAnnouncer
     end
 end
+
+spawn(function()
+    for i, v in pairs(game:GetService("ReplicatedStorage").ItemData.Images.Announcers:GetChildren()) do
+        table.insert(_G.AnnouncersTable, v.Name)
+    end
+end)
+
+spawn(function()
+    for i, v in pairs(game:GetService("ReplicatedStorage").ItemData.Images.Melees:GetChildren()) do
+        table.insert(_G.MeleeTable, v.Name)
+    end
+end)
+
+spawn(function()
+    for i, v in pairs(game:GetService("ReplicatedStorage").ItemData.Images.WeaponSkins:GetChildren()) do
+        table.insert(_G.WeaponSkinTable, v.Name)
+    end
+end)
 
 spawn(function()
     local HeadOff = Vector3.new(0, 0.5, 0)
