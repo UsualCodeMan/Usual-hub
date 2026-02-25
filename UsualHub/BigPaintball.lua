@@ -5,13 +5,11 @@ local Camera = game:GetService("Workspace").CurrentCamera
 local worldToViewportPoint = Camera.worldToViewportPoint
 
 -- Script Varibles
-_G.unlock_all = false
 _G.BEsp = false
 _G.Tracers = false
 _G.TracerPositon = false
 _G.SEsp = false
 _G.Teamcheck = false
-_G.Vip = false
 
 -- Script Functions
 spawn(function()
@@ -255,3 +253,4 @@ end)
 Misc.AddToggle("Double Credits Toggle", false, function(Toggled) 
     workspace.__VARIABLES.DoubleCredits.Value = Toggled;
 end)
+
