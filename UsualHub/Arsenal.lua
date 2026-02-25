@@ -1,14 +1,16 @@
+-- General Varibles
 local Camera = workspace.CurrentCamera
 local Players = game:GetService("Players")
 local plyr = Players.LocalPlayer
 local worldToViewportPoint = Camera.worldToViewportPoint
-local Melee = plyr.Data.Shuffles.Melees
-local Announcers = plyr.Data.Shuffles.Announcers
+local Melee = plyr.Data.Melee
+local Announcers = plyr.Data.Announcer
 local FileName = "Arsenal_Favorites.txt"
 local AnnouncersTable = {}
 local WeaponSkinTable = {}
 local MeleeTable = {}
 
+-- Script Varibles
 _G.Besp = false
 _G.Tracers = false
 _G.TracerPositon = false
@@ -16,6 +18,7 @@ _G.TeamCheck = false
 _G.KillAllCheck = false
 _G.FavoritesTable = {CurrentAnnouncer = "", CurrentSkin = "", CurrentMelee = ""}
 
+-- Script Functions
 function SaveFavorites()
     local json
     local HttpService = game:GetService("HttpService")
@@ -259,71 +262,54 @@ spawn(function()
     end)
 end)
 
+-- Gui Setup
 local guiName = "UsualHub"
 local UILibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/twink"))()
 local MainUI = UILibrary.Load(guiName)
 local Info = MainUI.AddPage("Info")
-local Aimbot = MainUI.AddPage("Aimbot")
-local Misc = MainUI.AddPage("Misc")
+local Esp = MainUI.AddPage("Esp")
+local Appearance = MainUI.AddPage("Appearance")
 
 -- Info
-Info.AddLabel(" Ui Lib made by Kinlei#6459")
-Info.AddLabel("Scripts made by UsualGamer#0012")
+Info.AddLabel("Discord")
+Info.AddLabel("Ui Lib made by Kinlei#6459(Last known)")
+Info.AddLabel("Scripts made by Usualcno")
 Info.AddButton("Destroy UI", function() 
 	local CoreGui = game:GetService("CoreGui")
     local gui = CoreGui:WaitForChild(guiName)
-
     gui:Destroy()
 end)
 
--- Aimbot
-Aimbot.AddToggle("Box Esp", false, function(Toggled)
+-- Esp
+Esp.AddToggle("Box Esp", false, function(Toggled)
     _G.Besp = Toggled
 end)
-Aimbot.AddToggle("Tracers ", false, function(Toggled)
+Esp.AddToggle("Tracers ", false, function(Toggled)
     _G.Tracers = Toggled
 end)
-Aimbot.AddToggle("Tracer Positions", false, function(Toggled)
+Esp.AddToggle("Tracer Positions", false, function(Toggled)
     _G.TracerPositon = Toggled
 end)
-Aimbot.AddToggle("Team Check", false, function(Toggled)
+Esp.AddToggle("Team Check", false, function(Toggled)
     _G.Teamcheck = Toggled
 end)
 
--- Misc
-Misc.AddDropdown("Local Weapon Skin", WeaponSkinTable, function(Value)
+-- Appearance
+Appearance.AddDropdown("Local Weapon Skin", WeaponSkinTable, function(Value)
     _G.FavoritesTable.CurrentSkin = Value
     plyr.Equipped.Value = _G.FavoritesTable.CurrentSkin
 end)
-Misc.AddDropdown("Local Melee (Equip Shuffle in the Locker)", MeleeTable, function(Value)
+Appearance.AddDropdown("Local Melee", MeleeTable, function(Value)
     _G.FavoritesTable.CurrentMelee = Value
-    for i, v in pairs(Melee:GetChildren()) do
-        v:Destroy()
-    end
-    wait(1)
-    local String = Instance.new("StringValue")
-    String.Parent = Melee
-    String.Name = _G.FavoritesTable.CurrentMelee
+    Melee.Value = Value
 end)
-Misc.AddDropdown("Announcers (Equip Shuffle in the Locker)", AnnouncersTable, function(Value)
+Appearance.AddDropdown("Announcers", AnnouncersTable, function(Value)
     _G.FavoritesTable.CurrentAnnouncer = Value
-    for i, v in pairs(Announcers:GetChildren()) do
-        v:Destroy()
-    end
-    wait(1)
-    local String = Instance.new("StringValue")
-    String.Parent = Announcers
-    String.Name = _G.FavoritesTable.CurrentAnnouncer
+    Announcers.Value = Value
 end)
-Misc.AddButton("Save Favorites", function() 
+Appearance.AddButton("Save Favorites", function() 
 	SaveFavorites()
 end)
-Misc.AddButton("Load Favorites", function() 
+Appearance.AddButton("Load Favorites", function() 
 	LoadFavorites()
 end)
--- Misc.AddSlider("Walkspeed slider", "WalkSpeed", 16, 100, false, function(ws)
---     l__Humanoid__4.WalkSpeed = ws;
--- end)
--- Misc.AddSlider("JumpPower slider", "JumpPower", 35, 100, false, function(jp)
---     l__Humanoid__4.JumpPower = jp
--- end)
