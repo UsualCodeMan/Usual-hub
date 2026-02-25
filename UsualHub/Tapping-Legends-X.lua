@@ -72,8 +72,9 @@ local Teleport = MainUI.AddPage("Teleports")
 local Misc = MainUI.AddPage("Misc")
 
 -- Info
-Info.AddLabel(" Ui Lib made by Kinlei#6459")
-Info.AddLabel("Scripts made by UsualGamer#0012")
+Info.AddLabel("Discord")
+Info.AddLabel("Ui Lib made by Kinlei#6459(Last known)")
+Info.AddLabel("Scripts made by Usualcno")
 Info.AddButton("Destroy UI", function() 
 	local CoreGui = game:GetService("CoreGui")
     local gui = CoreGui:WaitForChild(guiName)
@@ -118,4 +119,5 @@ end)
 
 Misc.AddButton("Sent trade to all", function ()
     SendInvites()
+
 end)
