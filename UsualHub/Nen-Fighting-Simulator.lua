@@ -1,9 +1,12 @@
+-- General Varibles
 local Workspace = game:GetService("Workspace")
 local lplr = game.Players.LocalPlayer
 
+-- Script varibles
 _G.AutoTrain = false
 _G.Type = ""
 
+-- Script Functions
 spawn(function()
     function Train()
         while task.wait(1) and _G.AutoTrain do
@@ -15,6 +18,7 @@ spawn(function()
     end
 end)
 
+-- Gui Setup
 local guiName = "UsualHub"
 local UILibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/twink"))()
 local MainUI = UILibrary.Load(guiName)
@@ -24,8 +28,9 @@ local Teleport = MainUI.AddPage("Teleport")
 local Misc = MainUI.AddPage("Misc")
 
 -- Info
-Info.AddLabel(" Ui Lib made by Kinlei#6459")
-Info.AddLabel("Scripts made by UsualGamer#0012")
+Info.AddLabel("Discord")
+Info.AddLabel("Ui Lib made by Kinlei#6459(Last known)")
+Info.AddLabel("Scripts made by Usualcno")
 Info.AddButton("Destroy UI", function() 
 	local CoreGui = game:GetService("CoreGui")
     local gui = CoreGui:WaitForChild(guiName)
@@ -33,6 +38,7 @@ Info.AddButton("Destroy UI", function()
 end)
 
 -- Farming
+Farming.AddLabel("One at a time")
 Farming.AddToggle("AutoFarm Strength", false, function(Value)
     _G.AutoTrain = Value
     _G.Type = "str"
@@ -54,7 +60,7 @@ Farming.AddToggle("AutoFarm Agility", false, function(Value)
     Train()
 end)
 
--- Teleport
+-- Teleport places
 Teleport.AddLabel("Places")
 Teleport.AddButton("Dur - Swamp", function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Zones.SwampZone.CFrame
@@ -105,6 +111,7 @@ Teleport.AddButton("Nen - Badlands", function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Zones.BadlandsZone.CFrame
 end)
 
+-- Teleport Quests
 Teleport.AddLabel("Quests")
 Teleport.AddButton("King", function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Whale.Ging.camView.CFrame
@@ -122,16 +129,17 @@ Teleport.AddButton("ChonsoleFF", function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Yorknew.GIconsole.Lid["Playstation Logo"].CFrame
 end)
 
+-- Teleport spawns
 Teleport.AddLabel("Spawns")
 Teleport.AddButton("Whale", function ()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Whale.WhaleSpawn.CFrame
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Whale.WhaleSpawn.Part.CFrame
 end)
 Teleport.AddButton("Yorknew", function ()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Yorknew.YorkSpawn.CFrame
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Yorknew.YorkSpawn.Part.CFrame
 end)
 Teleport.AddButton("Game Spawn", function ()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.GameSpawn.CFrame
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Game.GameSpawn.Part.CFrame
 end)
 
 -- Misc
-Misc.AddLabel("Send suggestions to UsualGamer#0012")
+Misc.AddLabel("Send suggestions to Usualcno")
