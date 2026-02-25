@@ -1,46 +1,19 @@
+-- General Varibles
 local Players = game:GetService("Players")
 local plyr = game.Players.LocalPlayer
 local Camera = game:GetService("Workspace").CurrentCamera
 local worldToViewportPoint = Camera.worldToViewportPoint
 
+-- Script Varibles
 _G.unlock_all = false
-_G.Besp = false
+_G.BEsp = false
 _G.Tracers = false
 _G.TracerPositon = false
-_G.Sesp = false
+_G.SEsp = false
 _G.Teamcheck = false
+_G.Vip = false
 
-spawn(function()
-    local library = require(game:GetService("ReplicatedStorage").Framework.Library)
-    local env = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.Scripts.Game["First Person Controller"])
-    
-    print("loaded");
-    local old_fire = library.Network.Fire
-    library.Network.Fire = newcclosure(function(self, ...)
-    local args = {...}
-    
-    if _G.unlock_all and tostring(self) == "Request Respawn" then
-        args[1] = "1"
-    end
-    
-    return old_fire(self, unpack(args))
-    end)
-    
-    local old_own = env.DoesOwnGun
-    env.DoesOwnGun = function(...)
-    return (_G.unlock_all and true) or old_own(...)
-    end
-
-    local old_own_gun = library.GunCmds.DoesOwnGun
-    library.GunCmds.DoesOwnGun = newcclosure(function(self, ...)
-    return (_G.unlock_all and true) or old_own_gun(self, ...)
-    end)
-    
-    for _, gun in next, library.Directory.Guns do
-    gun["offsale"] = false
-    end
-end)
-
+-- Script Functions
 spawn(function()
     local HeadOff = Vector3.new(0, 0.5, 0)
     local LegOff = Vector3.new(0,3,0)
@@ -61,7 +34,7 @@ spawn(function()
         Box.Transparency = 1
         Box.Filled = false
 
-        function boxesp()
+        function boxEsp()
             game:GetService("RunService").RenderStepped:Connect(function()
                 if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
                     local Vector, onScreen = Camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
@@ -85,8 +58,8 @@ spawn(function()
                             BoxOutline.Visible = false
                             Box.Visible = false
                         else
-                            BoxOutline.Visible = _G.Besp
-                            Box.Visible = _G.Besp
+                            BoxOutline.Visible = _G.BEsp
+                            Box.Visible = _G.BEsp
                         end
     
                     else
@@ -99,7 +72,7 @@ spawn(function()
                 end
             end)
         end
-        coroutine.wrap(boxesp)()
+        coroutine.wrap(boxEsp)()
     end
 
     game.Players.PlayerAdded:Connect(function(v)
@@ -117,7 +90,7 @@ spawn(function()
         Box.Transparency = 1
         Box.Filled = false
 
-        function boxesp()
+        function boxEsp()
             game:GetService("RunService").RenderStepped:Connect(function()
                 if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
                     local Vector, onScreen = Camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
@@ -141,8 +114,8 @@ spawn(function()
                             BoxOutline.Visible = false
                             Box.Visible = false
                         else
-                            BoxOutline.Visible = _G.Besp
-                            Box.Visible = _G.Besp
+                            BoxOutline.Visible = _G.BEsp
+                            Box.Visible = _G.BEsp
                         end
     
                     else
@@ -155,7 +128,7 @@ spawn(function()
                 end
             end)
         end
-        coroutine.wrap(boxesp)()
+        coroutine.wrap(boxEsp)()
     end)
 end)
 
@@ -235,41 +208,42 @@ spawn(function()
     end)
 end)
 
+-- GUI setup
 local guiName = "UsualHub"
 local UILibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/twink"))()
 local MainUI = UILibrary.Load(guiName)
 local Info = MainUI.AddPage("Info")
-local Aimbot = MainUI.AddPage("Aimbot")
+local Esp = MainUI.AddPage("Esp")
 local Misc = MainUI.AddPage("Misc")
 
 -- Info
-Info.AddLabel(" Ui Lib made by Kinlei#6459")
-Info.AddLabel("Scripts made by UsualGamer#0012")
+Info.AddLabel("Discord")
+Info.AddLabel("Ui Lib made by Kinlei#6459(Last known)")
+Info.AddLabel("Scripts made by Usualcno")
 Info.AddButton("Destroy UI", function() 
 	local CoreGui = game:GetService("CoreGui")
     local gui = CoreGui:WaitForChild(guiName)
     gui:Destroy()
 end)
 
--- Aimbot
-Aimbot.AddLabel("WIP")
-Aimbot.AddToggle("Box Esp", false, function(Toggled)
-    _G.Besp = Toggled
+
+-- Esp
+Esp.AddLabel("Esp")
+Esp.AddToggle("Box Esp", false, function(Toggled)
+    _G.BEsp = Toggled
 end)
-Aimbot.AddToggle("Tracers ", false, function(Toggled)
+Esp.AddToggle("Tracers ", false, function(Toggled)
     _G.Tracers = Toggled
 end)
-Aimbot.AddToggle("Tracer Positions", false, function(Toggled)
+Esp.AddToggle("Tracer Positions", false, function(Toggled)
     _G.TracerPositon = Toggled
 end)
-Aimbot.AddToggle("Team Check", false, function(Toggled)
+Esp.AddToggle("Team Check", false, function(Toggled)
     _G.Teamcheck = Toggled
 end)
 
 -- Misc
-Misc.AddButton("Unlockall guns", function() 
-    _G.unlock_all = true
-end)
+Misc.AddLabel("Send suggestions to Usualcno")
 Misc.AddButton("Destroy spawn barriers", function() 
     workspace.__MAP.SpawnShields.Red:Destroy()
     workspace.__MAP.SpawnShields.Blue:Destroy()
@@ -281,9 +255,3 @@ end)
 Misc.AddToggle("Double Credits Toggle", false, function(Toggled) 
     workspace.__VARIABLES.DoubleCredits.Value = Toggled;
 end)
--- Misc.AddSlider("Walkspeed slider", "WalkSpeed", 16, 100, false, function(ws)
---     l__Humanoid__4.WalkSpeed = ws;
--- end)
--- Misc.AddSlider("JumpPower slider", "JumpPower", 35, 100, false, function(jp)
---     l__Humanoid__4.JumpPower = jp
--- end)
