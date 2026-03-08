@@ -1,0 +1,36 @@
+function GuiCreate()
+    _G.PartsUI = UILibrary.Load("Parts")
+    _G.PartsTab = _G.PartsUI.AddPage("Parts")
+end
+
+function Parts()
+    local PartLabel = game:GetService("CoreGui").Parts.ContainerFrame.MainFrame.Display.Parts
+    local PartsItem = game:GetService("Workspace").MoveableParts
+    for i, child in PartsItem:GetChildren() do
+        table.insert(PartsTable, child.name)
+        _G.PartsTab.AddLabel(child.name)
+    end
+    wait(0.5)
+    for i, child in PartLabel:GetChildren() do
+        if child.name == PartsTable[1] .. "LABEL" then
+           table.remove(PartsTable, 1)
+           child:Destroy()
+        end
+    end
+    if _G.PartsList == true then
+        Parts()
+    end
+end
+_G.PartsList = false
+Tools.AddButton("Show parts at Pit Repair", function()
+    if _G.PartsList == false then
+        GuiCreate()
+        _G.PartsList = true
+        Parts()
+        else
+            _G.PartsList = false
+            local CoreGui = game:GetService("CoreGui")
+            local gui = CoreGui:WaitForChild("Parts")
+            gui:Destroy()
+    end
+end)
