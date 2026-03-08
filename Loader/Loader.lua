@@ -1,4 +1,5 @@
 local Game = game.PlaceId
+print(Game)
 local BigPaintBall = 3527629287
 local NenSim = 9555732501
 local Arsenal = 286090429
@@ -12,3 +13,4 @@ elseif Game == Arsenal then
 elseif Game == TappingLegendsX then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub/main/UsualHub/Tapping-Legends-X.lua"))()
 end
+
