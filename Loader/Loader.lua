@@ -1,3 +1,4 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub/main/Loader/Logo.Lua"))()
 local Game = game.PlaceId
 print(Game)
 local BigPaintBall = 3527629287
@@ -16,6 +17,7 @@ elseif Game == TappingLegendsX then
 elseif Game == FixItUp then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub//main/UsualHub/FixItUp.Lua"))()
 end
+
 
 
 
