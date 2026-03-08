@@ -14,7 +14,8 @@ elseif Game == Arsenal then
 elseif Game == TappingLegendsX then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub/main/UsualHub/Tapping-Legends-X.lua"))()
 elseif Game == FixItUp then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub/refs/heads/main/UsualHub/FixItUp.Lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub//main/UsualHub/FixItUp.Lua"))()
 end
+
 
 
