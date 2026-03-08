@@ -1,6 +1,3 @@
-local CoreGui = game:GetService("CoreGui")
-local gui = CoreGui:WaitForChild("UsualHub")
-gui:Destroy()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub/main/Loader/Logo.Lua"))()
 local Game = game.PlaceId
 print(Game)
@@ -20,6 +17,7 @@ elseif Game == TappingLegendsX then
 elseif Game == FixItUp then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub//main/UsualHub/FixItUp.Lua"))()
 end
+
 
 
 
