@@ -10,4 +10,4 @@ Arsenal - https://www.roblox.com/games/286090429/Arsenal
 BIG Paintball! Classic - https://www.roblox.com/games/3527629287/BIG-Paintball-Classic
 Tapping Legends X - https://www.roblox.com/games/8750997647/Tapping-Legends-X
 Nen Fighting Simulator - https://www.roblox.com/games/9555732501/Nen-Fighting-Simulator
-Fix It Up! - https://www.roblox.com/games/72712036210947/Fix-It-Up#!/game-instances
+Fix It Up! - https://www.roblox.com/games/72712036210947/Fix-It-Up#!
