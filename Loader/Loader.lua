@@ -4,6 +4,7 @@ local BigPaintBall = 3527629287
 local NenSim = 9555732501
 local Arsenal = 286090429
 local TappingLegendsX = 8750997647
+local FixItUp = 72712036210947
 if Game == BigPaintBall then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub/main/UsualHub/BigPaintball.lua"))()
 elseif Game == NenSim then
@@ -12,5 +13,8 @@ elseif Game == Arsenal then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub/main/UsualHub/Arsenal.lua"))()
 elseif Game == TappingLegendsX then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub/main/UsualHub/Tapping-Legends-X.lua"))()
+elseif Game == FixItUp then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub/refs/heads/main/UsualHub/FixItUp.Lua"))()
 end
+
 
