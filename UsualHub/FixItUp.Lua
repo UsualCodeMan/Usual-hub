@@ -46,7 +46,7 @@ end)
 -- Teleport create
 if game:GetService("Workspace"):FindFirstChild("UsualWasHere") == nil then
     partcreate("UsualWasHere", 0,0,0)
-    partcreate("Pitstop1", -990.9, 5.0, -127.7)
+    partcreate("Pitstop1", -990.9, 15.0, -127.7)
     partcreate("JunkYard", -1632.49, 5, -306)
     partcreate("JunkYard1", -1709.1, 4.3, -256.0)
     partcreate("JunkYard2", -1803.5, 4.3, -163.2)
@@ -58,7 +58,10 @@ if game:GetService("Workspace"):FindFirstChild("UsualWasHere") == nil then
     partcreate("JunkYard8", -1877.7, 4.3, -348.1)
     partcreate("JunkYard9", -1857.5, 4.3, -459.7)
     partcreate("View", -1709.4, 250, -251.0)
-    partcreate("PitWheels", -1359.7, 4, -1490.2)
+    partcreate("PitWheels1", -1359.7, 15, -1490.2)
+    partcreate("ApexWheels", -11704.7, 5, 5701.8)
+    partcreate("Dyno", -11726.4, 15, 5765.4)
+    
     else
         print("Already Placed")
 end
@@ -99,6 +102,9 @@ end)
 Teleport.AddButton ("PitStop Repairs1", function ()
     plyr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Pitstop1.CFrame
 end)
+Teleport.AddButton ("Dyno", function ()
+    plyr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Dyno.CFrame
+end)
 Teleport.AddButton("Dealership", function()
     plyr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Utils.Dealership.ExitPos.CFrame
 end)
@@ -112,8 +118,11 @@ end)
 Teleport.AddButton("Spare Parts Shop", function()
     plyr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").PartsStore.SpareParts.SpawnPosition.CFrame
 end)
-Teleport.AddButton("PitWheels", function()
-    plyr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").PitWheels.CFrame
+Teleport.AddButton("PitWheels1", function()
+    plyr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").PitWheels1.CFrame
+end)
+Teleport.AddButton("Apex Wheels", function()
+    plyr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").ApexWheels.CFrame
 end)
 Teleport.AddLabel("Garages")
 Teleport.AddButton("Robux garage1", function()
