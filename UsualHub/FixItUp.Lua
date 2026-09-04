@@ -18,7 +18,7 @@ end
 
 -- GUI Setup
 local guiName = "UsualHub"
-local UILibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/twink"))()
+local UILibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/UsualCodeMan/Usual-hub/main/Loader/TwinkUI.Lua"))()
 local MainUI = UILibrary.Load(guiName)
 local Info = MainUI.AddPage("Info")
 local Tools = MainUI.AddPage("Tools")
